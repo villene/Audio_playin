@@ -1,0 +1,11 @@
+/* 
+    Document   : canvas_style
+    Created on : 2014.30.1, 12:40:02
+    Author     : Villene
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+canvas {
+    border:1px solid black;
+}
