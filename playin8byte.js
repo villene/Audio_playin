@@ -21,11 +21,11 @@ window.onload = function(){
 function updateAnalysers(time) {
     {
 
-        var freqData = new Float32Array(analyserNode.frequencyBinCount);
-        analyserNode.getFloatFrequencyData(freqData);
-        //if(new Date().getTime() % 100 === 0) test(freqData);
-         //getPitch(freqData);
-        drawData(freqData);
+        var freqByteData = new Uint8Array(analyserNode.frequencyBinCount);
+        analyserNode.getByteFrequencyData(freqByteData);
+        if(new Date().getTime() % 100 === 0) test(freqByteData);
+         getPitch(freqByteData);
+        drawData(freqByteData);
         
     }
     
@@ -71,9 +71,9 @@ function drawData(freqByteData){
     analyserContext.fillStyle = grad;
     analyserContext.lineCap = 'round';
     
-    for (var i = 0; i < 100; ++i) {
+    for (var i = 0; i < freqByteData.length; ++i) {
         if (freqByteData[i] === MaxFrequency){
-        Frequency = i * SampleRate / analyserNode.fftSize;
+        Frequency = i * SampleRate / 2048;
         analyserContext.fillRect(0, canvasHeight, BAR_WIDTH, -Math.round(Frequency)/3);
         
         Note=freqnote(Frequency);
@@ -151,7 +151,6 @@ function gotStream(stream) {
 
     analyserNode = audioContext.createAnalyser();
     analyserNode.fftSize = 2048;
-    //analyserNode.smoothingTimeConstant = 0.7;
     inputPoint.connect( analyserNode );
 
     zeroGain = audioContext.createGain();
