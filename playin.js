@@ -70,10 +70,10 @@ function drawData(freqByteData){
     analyserContext.clearRect(0, 0, canvasWidth, canvasHeight);
     analyserContext.fillStyle = grad;
     analyserContext.lineCap = 'round';
-    
+    analyserContext.fillText(audioContext.sampleRate, 20, 20);
     for (var i = 0; i < 100; ++i) {
         if (freqByteData[i] === MaxFrequency){
-        Frequency = i * SampleRate / analyserNode.fftSize;
+            Frequency=i * SampleRate / analyserNode.fftSize;
         analyserContext.fillRect(0, canvasHeight, BAR_WIDTH, -Math.round(Frequency)/3);
         
         Note=freqnote(Frequency);
