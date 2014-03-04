@@ -96,11 +96,26 @@ function normalizeTimeData2(freqData)
        return buf;
 }
 
+function normalizeTimeData3(freqData)
+{
+    var buf=[];
+    //var max = Math.max.apply( Math, freqData);
+   //max=Math.round(max/2);
+   
+    
+   l = freqData.length;
+   for (var i=0; i<l; i++)
+       {
+           buf[i]=freqData[i]/128-1;
+       }
+       return buf;
+}
+
 function testRealTime(freq)
 {   
     //var buf=normalize(autoCorrelate(windowing(buf)));
     //var i=zeroCrossing(normalize(autoCorrelate(windowing(buf))));
-    var buf=normalize(autoCorrelate(windowing(normalizeTimeData(freq))));
+    var buf=normalize(autoCorrelate(windowing(normalizeTimeData3(freq))));
     var i=zeroCrossing(freq);
     
     return fPitch(findMax(i,buf));

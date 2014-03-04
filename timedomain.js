@@ -26,9 +26,9 @@ function updateAnalysers(time) {
            console.log(testRealTime(freqData));
            drawGraph(normalizeTimeData(freqData));
         //if(countI++%100 === 0 ) console.log(testRealTime(freqData), joinArr(freqData));
-        //var FreqElem = document.getElementById('frequency');
+        var FreqElem = document.getElementById('frequency');
         //var NoteElem = document.getElementById('note');
-        //FreqElem.innerText=autoCorrelate(freqData);
+        FreqElem.innerText=testRealTime(freqData);
         //Note = freqnote(autoCorrelate(freqData));
         //NoteElem.innerText=Note.step + Note.oct;
         //drawData(freqData);        
