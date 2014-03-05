@@ -71,7 +71,7 @@ function normalizeTimeData(freqData)
     
     max=Math.round(max/2);
     
-   l = freqData.length;
+   var l = freqData.length;
    for (var i=0; i<l; i++)
        {
            if (freqData[i]<max) buf[i]=freqData[i]/(max-1)-1;
@@ -82,12 +82,9 @@ function normalizeTimeData(freqData)
 
 function normalizeTimeData2(freqData)
 {
-    var buf=[];
+    var buf=[]; 
     
-    
-   
-    
-   l = freqData.length;
+   var l = freqData.length;
    for (var i=0; i<l; i++)
        {
            if (freqData[i]<128) buf[i]=freqData[i]/127-1;
@@ -98,15 +95,29 @@ function normalizeTimeData2(freqData)
 
 function normalizeTimeData3(freqData)
 {
-    var buf=[];
-    //var max = Math.max.apply( Math, freqData);
-   //max=Math.round(max/2);
+    var buf=[];              
+   var l = freqData.length;
    
-    
-   l = freqData.length;
    for (var i=0; i<l; i++)
        {
-           buf[i]=freqData[i]/128-1;
+           buf[i]=freqData[i]/127.5-1;
+       }
+       return buf;
+}
+
+function normalizeTimeData4(freqData)
+{
+    var buf=[];              
+    var l = freqData.length;
+    var max = Math.max.apply( Math, freqData);
+    var min = Math.min.apply(Math, freqData);
+    var avg = (max-min)/2;
+    //console.log(min, max, avg);
+    
+    
+    for (var i=0; i<l; i++)
+       {           
+           buf[i]=((127.5-freqData[i])/avg);
        }
        return buf;
 }
