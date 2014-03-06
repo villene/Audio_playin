@@ -117,7 +117,7 @@ function normalizeTimeData4(freqData)
     
     for (var i=0; i<l; i++)
        {           
-           buf[i]=((127.5-freqData[i])/avg);
+           buf[i]=((126.5-freqData[i])/avg);
        }
        return buf;
 }
@@ -127,7 +127,7 @@ function testRealTime(freq)
     //var buf=normalize(autoCorrelate(windowing(buf)));
     //var i=zeroCrossing(normalize(autoCorrelate(windowing(buf))));
     var buf=normalize(autoCorrelate(windowing(normalizeTimeData3(freq))));
-    var i=zeroCrossing(freq);
+    var i=zeroCrossing(buf);
     
     return fPitch(findMax(i,buf));
     
